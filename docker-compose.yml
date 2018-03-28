@@ -1,0 +1,66 @@
+version: '2'
+services:
+    nginx:
+        image: nginx
+    
+        ports:
+            - '80:80'
+        # uncoment this line and paste udp link in your papertrialapp links    
+        #logging:
+           # driver: syslog
+            #options:
+              #  syslog-address: "udp://logsN.papertrailapp.com:XXXXXX"
+                
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+             
+            - ./wordpress:/var/www/html 
+        #command: [ service, 'nginx', 'restart' ] for test logs 
+        environment:
+            - DATADOG_HOST=datadog
+        links:
+            - wordpress
+        restart: always
+
+    mysql:
+        image: mysql
+        ports:
+            - '3306:3306'
+        # uncoment this line and paste udp link in your papertrialapp links
+        #logging:
+            #driver: syslog
+            #options:
+                #syslog-address: "udp://logs3.papertrailapp.com:50272"
+                    
+        volumes:
+            - ./db-data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=test123
+        restart: always
+    wordpress:
+        image: wordpress:4.9.3-php7.0-fpm
+        ports:
+            - '9000:9000'
+        volumes:
+            - ./wordpress:/var/www/html
+        environment:
+            - WORDPRESS_DB_NAME=wpdb
+            - WORDPRESS_TABLE_PREFIX=wp_
+            - WORDPRESS_DB_HOST=mysql
+            - WORDPRESS_DB_PASSWORD=test123
+        links:
+            - mysql
+        restart: always
+
+    datadog:
+        build: datadog
+        links:
+            - nginx 
+            - mysql
+        environment:
+            # add your api_key from datagog
+            - API_KEY=
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /proc/mounts:/host/proc/mounts:ro
+            - /sys/fs/cgroup:/host/sys/fs/cgroup:ro  
