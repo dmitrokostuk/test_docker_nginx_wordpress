@@ -35,3 +35,19 @@ Step 4 - Run Docker-compose
 Start to create the new containers with docker compose. Go to the project directory and start the new containers based on our compose file:
 
         docker-compose up -d
+
+Step 5 - Install Wordpress
+
+Before we do this step, let's check the ports/open ports on the system. For work our project we have 3 ports opened, port 80, 3306 and port 9000.Run command:
+
+        netstat -plntu
+
+If this ports are open you mast open your web browser and type in the server URL or IP address.
+
+http://localhost/
+all
+127.0.0.1
+You can see the WordPress installation page. Choose your language and click 'Continue'.
+Fill in your website details:
+site title, admin user and password, your email address and then click 'Install Wordpress'.
+
