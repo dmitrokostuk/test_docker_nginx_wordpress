@@ -6,7 +6,11 @@ Exemple for Ubuntu 16.04
 Step 1 - Install Docker
 Before we begin, update the Ubuntu repository and install latest updates:
 
-sudo apt-get update and sudo apt-get upgrade
+        sudo apt-get update
+        sudo apt-get upgrade
+        sudo apt-get install -y docker.io
+
+
 When the installation is done, start docker and add it to start automatically at boot time:
 
         systemctl start docker
