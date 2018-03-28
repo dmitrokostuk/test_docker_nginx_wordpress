@@ -44,9 +44,10 @@ Before we do this step, let's check the ports/open ports on the system. For work
 
 If this ports are open you mast open your web browser and type in the server URL or IP address.
 
-http://localhost/
-all
-127.0.0.1
+        http://localhost/
+or
+        127.0.0.1
+
 You can see the WordPress installation page. Choose your language and click 'Continue'.
 Fill in your website details:
 site title, admin user and password, your email address and then click 'Install Wordpress'.
