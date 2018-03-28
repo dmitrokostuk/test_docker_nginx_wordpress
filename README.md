@@ -19,10 +19,12 @@ When the installation is done, start docker and add it to start automatically at
 Step 2 - Install Docker-Compose
 
 Docker-compose Python script and if we need to install it we must:
+
         sudo apt-get install -y python python-pip
         pip install docker-compose
 
 check the docker-compose from the command:
+
         docker-compose -v
 
 Step 3 - Create accounts in papertrial and datadog
